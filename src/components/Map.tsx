@@ -1,4 +1,3 @@
-import { lazy, Suspense } from "react";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
@@ -15,9 +14,8 @@ import {
   dataPoints,
   convertEastingNorthingToLatLong,
 } from "../utility";
-// import { Markers } from "../components/";
-
-const Markers = lazy(() => import("./Markers"));
+import "./styles.scss";
+import MarkerWrapper from "./MarkerWrapper";
 
 const Map = () => {
   const convertedCoordinates = convertEastingNorthingToLatLong(
@@ -35,7 +33,7 @@ const Map = () => {
             convertedCoordinates.longitude,
           ]}
           zoom={initialZoom}
-          style={{ height: "100vh", width: "100%" }}
+          className="map-container"
         >
           <LayersControl>
             <LayersControl.BaseLayer checked name="Street View - Google Map">
@@ -55,9 +53,7 @@ const Map = () => {
               </LayerGroup>
             </LayersControl.BaseLayer>
           </LayersControl>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Markers />
-          </Suspense>
+          <MarkerWrapper />
         </MapContainer>
       ) : null}
     </>

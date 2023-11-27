@@ -1,11 +1,13 @@
+import "./styles.scss";
+
 const Metadata = (props: IMetadataProps) => {
   const { depth, layerAmount } = props;
 
   return (
     <>
-      <span style={{ fontWeight: "bold" }}> Dept: </span>
+      <span className="bold"> Dept: </span>
       {depth}m <br />
-      <span style={{ fontWeight: "bold" }}> Layer Amount: </span>
+      <span className="bold"> Layer Amount: </span>
       {layerAmount}
     </>
   );
