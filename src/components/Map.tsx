@@ -1,23 +1,25 @@
+import { lazy, Suspense } from "react";
 import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
+import "leaflet-defaulticon-compatibility";
 import {
   MapContainer,
   TileLayer,
-  Marker,
-  Popup,
   LayerGroup,
   LayersControl,
 } from "react-leaflet";
 import {
-  initialLatitude,
-  initialLongitude,
+  // initialLatitude,
+  // initialLongitude,
   initialZoom,
   dataPoints,
   convertEastingNorthingToLatLong,
 } from "../utility";
+// import { Markers } from "../components/";
 
-const Map = (props: any) => {
-  // const { dataPoints, selectedPoint, onSelectPoint } = props;
+const Markers = lazy(() => import("./Markers"));
 
+const Map = () => {
   const convertedCoordinates = convertEastingNorthingToLatLong(
     dataPoints[0].easting,
     dataPoints[0].northing
@@ -53,37 +55,9 @@ const Map = (props: any) => {
               </LayerGroup>
             </LayersControl.BaseLayer>
           </LayersControl>
-
-          {dataPoints.map((point) => {
-            const convertedCoordinates = convertEastingNorthingToLatLong(
-              point.easting,
-              point.northing
-            );
-
-            if (convertedCoordinates) {
-              const { latitude, longitude } = convertedCoordinates;
-
-              return (
-                <Marker key={point.id} position={[latitude, longitude]}>
-                  <Popup>
-                    Dept: {point.depth}m <br /> Layer Amount[-]:{" "}
-                    {point.layerAmount}
-                  </Popup>
-                </Marker>
-              );
-            } else {
-              return null;
-            }
-          })}
-          {/* {dataPoints.map((point) => (
-        <Marker
-          key={point.id}
-          position={[point.latitude, point.longitude]}
-          onClick={() => onSelectPoint(point.id)}
-        >
-          <Popup>{point.name}</Popup>
-        </Marker>
-      ))} */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <Markers />
+          </Suspense>
         </MapContainer>
       ) : null}
     </>
