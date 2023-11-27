@@ -1,11 +1,13 @@
 const Metadata = (props: any) => {
-  const { selectedPoint } = props;
+  const { point } = props;
 
   return (
-    <div>
-      <h2>{selectedPoint.name}</h2>
-      <p>{selectedPoint.description}</p>
-    </div>
+    <>
+      <span style={{ fontWeight: "bold" }}> Dept: </span>
+      {point.depth}m <br />
+      <span style={{ fontWeight: "bold" }}> Layer Amount: </span>
+      {point.layerAmount}
+    </>
   );
 };
 

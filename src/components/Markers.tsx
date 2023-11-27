@@ -1,5 +1,6 @@
 import { Marker, Popup } from "react-leaflet";
 import { dataPoints, convertEastingNorthingToLatLong } from "../utility";
+import Metadata from "./Metadata";
 
 const Markers = () => {
   return (
@@ -16,10 +17,7 @@ const Markers = () => {
           return (
             <Marker key={point.id} position={[latitude, longitude]}>
               <Popup>
-                <span style={{ fontWeight: "bold" }}> Dept: </span>
-                {point.depth}m <br />
-                <span style={{ fontWeight: "bold" }}> Layer Amount: </span>
-                {point.layerAmount}
+                <Metadata selectedPoint={point} />
               </Popup>
             </Marker>
           );
