@@ -1,14 +1,19 @@
-const Metadata = (props: any) => {
-  const { point } = props;
+const Metadata = (props: IMetadataProps) => {
+  const { depth, layerAmount } = props;
 
   return (
     <>
       <span style={{ fontWeight: "bold" }}> Dept: </span>
-      {point.depth}m <br />
+      {depth}m <br />
       <span style={{ fontWeight: "bold" }}> Layer Amount: </span>
-      {point.layerAmount}
+      {layerAmount}
     </>
   );
 };
 
 export default Metadata;
+
+interface IMetadataProps {
+  depth: number;
+  layerAmount: number;
+}

@@ -5,19 +5,21 @@ import Metadata from "./Metadata";
 const Markers = () => {
   return (
     <>
-      {dataPoints.map((point: any) => {
+      {dataPoints.map((point: IPointProps) => {
+        const { depth, layerAmount, id, easting, northing } = point;
+
         const convertedCoordinates = convertEastingNorthingToLatLong(
-          point.easting,
-          point.northing
+          easting,
+          northing
         );
 
         if (convertedCoordinates) {
           const { latitude, longitude } = convertedCoordinates;
 
           return (
-            <Marker key={point.id} position={[latitude, longitude]}>
+            <Marker key={id} position={[latitude, longitude]}>
               <Popup>
-                <Metadata selectedPoint={point} />
+                <Metadata depth={depth} layerAmount={layerAmount} />
               </Popup>
             </Marker>
           );
@@ -30,3 +32,11 @@ const Markers = () => {
 };
 
 export default Markers;
+
+interface IPointProps {
+  id: number;
+  easting: number;
+  northing: number;
+  depth: number;
+  layerAmount: number;
+}
