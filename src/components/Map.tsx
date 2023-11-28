@@ -10,8 +10,6 @@ import {
 import { useState } from "react";
 import { CircularProgress } from "@mui/material";
 import {
-  // initialLatitude,
-  // initialLongitude,
   initialZoom,
   dataPoints,
   convertEastingNorthingToLatLong,

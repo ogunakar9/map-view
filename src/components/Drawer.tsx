@@ -27,16 +27,6 @@ export default function ResponsiveDrawer() {
     setMobileOpen(!mobileOpen);
   };
 
-  // useMapEvents({
-  //   click() {
-  //     map.locate();
-  //   },
-  //   locationfound(e) {
-  //     // setPosition(e.latlng)
-  //     map.flyTo(e.latlng, map.getZoom());
-  //   },
-  // });
-
   const drawer = (
     <div>
       <Toolbar />

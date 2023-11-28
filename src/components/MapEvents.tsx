@@ -10,8 +10,6 @@ const MapEvents = (props: any) => {
     return convertEastingNorthingToLatLong(easting, northing);
   });
 
-  console.log("convertedCoordinatesArray:", convertedCoordinatesArray);
-
   const map = useMap();
   const handleMapError = (error: any) => {
     console.error("Error during map interaction:", error);
@@ -34,7 +32,6 @@ const MapEvents = (props: any) => {
 
   useEffect(() => {
     const handleDrawerBtnClick = () => {
-      // map.flyTo(e.latlng, map.getZoom());
       const lat = convertedCoordinatesArray[activePoint]?.latitude as number;
       const long = convertedCoordinatesArray[activePoint]?.longitude as number;
 
