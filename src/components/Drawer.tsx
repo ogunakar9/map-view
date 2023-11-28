@@ -21,10 +21,21 @@ const drawerWidth = 240;
 
 export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activePoint, setActivePoint] = useState(1);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  // useMapEvents({
+  //   click() {
+  //     map.locate();
+  //   },
+  //   locationfound(e) {
+  //     // setPosition(e.latlng)
+  //     map.flyTo(e.latlng, map.getZoom());
+  //   },
+  // });
 
   const drawer = (
     <div>
@@ -36,10 +47,10 @@ export default function ResponsiveDrawer() {
 
           return (
             <ListItem key={id} disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() => setActivePoint(index)}>
                 <ListItemIcon>
                   <LocationOn
-                    color={index === id - 1 ? "primary" : "inherit"}
+                    color={activePoint === index ? "primary" : "disabled"}
                   />
                 </ListItemIcon>
                 <ListItemText primary={name} />
@@ -121,7 +132,7 @@ export default function ResponsiveDrawer() {
         }}
       >
         <Toolbar />
-        <MapWrapper />
+        <MapWrapper activePoint={activePoint} />
       </Box>
     </Box>
   );

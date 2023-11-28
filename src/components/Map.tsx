@@ -19,7 +19,7 @@ import {
 import "./styles.scss";
 import { MapEvents, MarkersWrapper } from ".";
 
-const Map = () => {
+const Map = (props: any) => {
   const [isMapLoading, setMapLoading] = useState(true);
   const convertedCoordinates = convertEastingNorthingToLatLong(
     dataPoints[0].easting,
@@ -43,7 +43,7 @@ const Map = () => {
           className="map-container"
           whenReady={() => setMapLoading(false)}
         >
-          <MapEvents />
+          <MapEvents activePoint={props.activePoint} />
           <LayersControl>
             <LayersControl.BaseLayer checked name="Street View - Google Map">
               <TileLayer
