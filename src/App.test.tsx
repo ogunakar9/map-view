@@ -25,3 +25,5 @@
 //   // const marker1 = s.getElementsByClassName("leaflet-popup-content");
 //   expect(marker).toBeInTheDocument();
 // });
+
+export {};
