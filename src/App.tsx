@@ -1,8 +1,8 @@
-import { MapAppWrapper } from "./components";
+import DrawerMapWrapper from "./components/Drawer";
 import "./App.scss";
 
 const App = () => {
-  return <MapAppWrapper />;
+  return <DrawerMapWrapper />;
 };
 
 export default App;
