@@ -1,8 +1,8 @@
 import { MapAppWrapper } from "./components";
 import "./App.scss";
 
-function App() {
+const App = () => {
   return <MapAppWrapper />;
-}
+};
 
 export default App;
