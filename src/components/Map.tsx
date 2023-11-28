@@ -7,6 +7,8 @@ import {
   LayerGroup,
   LayersControl,
 } from "react-leaflet";
+import { useState } from "react";
+import { CircularProgress } from "@mui/material";
 import {
   // initialLatitude,
   // initialLongitude,
@@ -15,9 +17,10 @@ import {
   convertEastingNorthingToLatLong,
 } from "../utility";
 import "./styles.scss";
-import MarkerWrapper from "./MarkerWrapper";
+import { MapEvents, MarkersWrapper } from ".";
 
 const Map = () => {
+  const [isMapLoading, setMapLoading] = useState(true);
   const convertedCoordinates = convertEastingNorthingToLatLong(
     dataPoints[0].easting,
     dataPoints[0].northing
@@ -25,16 +28,22 @@ const Map = () => {
 
   return (
     <>
+      {isMapLoading ? (
+        <div className="suspense-loader">
+          <CircularProgress />
+        </div>
+      ) : null}
       {convertedCoordinates ? (
         <MapContainer
-          // center={[initialLatitude, initialLongitude]}
           center={[
             convertedCoordinates.latitude,
             convertedCoordinates.longitude,
           ]}
           zoom={initialZoom}
           className="map-container"
+          whenReady={() => setMapLoading(false)}
         >
+          <MapEvents />
           <LayersControl>
             <LayersControl.BaseLayer checked name="Street View - Google Map">
               <TileLayer
@@ -53,9 +62,11 @@ const Map = () => {
               </LayerGroup>
             </LayersControl.BaseLayer>
           </LayersControl>
-          <MarkerWrapper />
+          <MarkersWrapper />
         </MapContainer>
-      ) : null}
+      ) : (
+        <></>
+      )}
     </>
   );
 };

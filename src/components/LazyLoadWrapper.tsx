@@ -4,7 +4,7 @@ import "./styles.scss";
 
 const Markers = lazy(() => import("./Markers"));
 
-const MarkerWrapper = () => {
+const LazyLoadWrapper = () => {
   return (
     <Suspense
       fallback={
@@ -18,4 +18,4 @@ const MarkerWrapper = () => {
   );
 };
 
-export default MarkerWrapper;
+export default LazyLoadWrapper;
